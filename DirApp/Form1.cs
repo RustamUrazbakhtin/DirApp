@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,6 +23,43 @@ namespace DirApp
             columnType.FieldName = nameof(TreeListModel.Type);
             columnParentId.FieldName = nameof(TreeListModel.ParentId);
             columnPath.FieldName = nameof(TreeListModel.Path);
+            сolumnMimeType.FieldName = nameof(TreeListModel.MimeType);
+            columnSize.FieldName = nameof(TreeListModel.SizeFile);
+            columnCreateDate.FieldName = nameof(TreeListModel.CreateDate);
+        }
+
+        public static long DirSize(DirectoryInfo d)
+        {
+            long Size = 0;
+
+            var fis = d.GetFiles();
+
+            foreach (FileInfo fi in fis)
+            {
+                try
+                {
+                    Size += fi.Length;
+                }
+
+                catch (UnauthorizedAccessException)
+                {
+                    ;
+                }
+            }
+            
+            var dis = d.GetDirectories();
+            foreach (DirectoryInfo di in dis)
+            {
+                try
+                {
+                    Size += DirSize(di);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    ;
+                }
+            }
+            return (Size);
         }
 
         private List<TreeListModel> GetRecursFiles(string start_path, Guid parentId)
@@ -42,8 +80,12 @@ namespace DirApp
                         Name = infoDir.Name,
                         Path = infoDir.FullName,
                         Type = "Папка",
-                        ParentId = parentId
-                    });
+                        ParentId = parentId,
+                        SizeFile = DirSize(infoDir),
+                        MimeType = infoDir.Extension,
+                        CreateDate = infoDir.CreationTime
+                    }) ;
+
                     ls.AddRange(GetRecursFiles(folder, folderId));
                 }
 
@@ -58,7 +100,10 @@ namespace DirApp
                         Name = infoFile.Name,
                         Path = infoFile.FullName,
                         Type = "Файл",
-                        ParentId = parentId
+                        ParentId = parentId,
+                        SizeFile = new FileInfo(infoFile.FullName).Length,
+                        MimeType = infoFile.Extension,
+                        CreateDate = infoFile.CreationTime
                     });
                 }
             }
@@ -81,15 +126,5 @@ namespace DirApp
 
         }
 
-        private void treeList_DoubleClick(object sender, EventArgs e)
-        {
-            var row = treeList.FocusedNode;
-
-        }
-
-        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var row = treeList.FocusedNode.GetValue(columnId);
-        }
     }
 }

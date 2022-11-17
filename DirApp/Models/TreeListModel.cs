@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DirApp.Models
 {
@@ -14,6 +9,8 @@ namespace DirApp.Models
         public string Path { get; set; }
         public string Type { get; set; }
         public Guid? ParentId { get; set; }
-        public Image Image { get; set; }
+        public float SizeFile { get; set; }
+        public string MimeType { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 }

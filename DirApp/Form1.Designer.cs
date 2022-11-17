@@ -29,26 +29,25 @@ namespace DirApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label = new System.Windows.Forms.Label();
             this.pathTextBox = new System.Windows.Forms.TextBox();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.showBtn = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.treeList = new DevExpress.XtraTreeList.TreeList();
             this.columnId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.columnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.columnType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.showBtn = new DevExpress.XtraEditors.SimpleButton();
             this.columnParentId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.columnPath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.columnSize = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.сolumnMimeType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.columnCreateDate = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).BeginInit();
-            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label
@@ -80,6 +79,16 @@ namespace DirApp
             this.panelControl1.Size = new System.Drawing.Size(816, 35);
             this.panelControl1.TabIndex = 5;
             // 
+            // showBtn
+            // 
+            this.showBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showBtn.Location = new System.Drawing.Point(717, 2);
+            this.showBtn.Name = "showBtn";
+            this.showBtn.Size = new System.Drawing.Size(94, 29);
+            this.showBtn.TabIndex = 2;
+            this.showBtn.Text = "Просмотр";
+            this.showBtn.Click += new System.EventHandler(this.showBtn_Click);
+            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.treeList);
@@ -95,9 +104,11 @@ namespace DirApp
             this.columnId,
             this.columnName,
             this.columnType,
-            this.columnParentId,
-            this.columnPath});
-            this.treeList.ContextMenuStrip = this.contextMenuStrip;
+            this.columnCreateDate,
+            this.сolumnMimeType,
+            this.columnSize,
+            this.columnPath,
+            this.columnParentId});
             this.treeList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList.Location = new System.Drawing.Point(2, 2);
             this.treeList.Name = "treeList";
@@ -107,7 +118,6 @@ namespace DirApp
             this.treeList.OptionsMenu.EnableNodeMenu = false;
             this.treeList.Size = new System.Drawing.Size(812, 722);
             this.treeList.TabIndex = 6;
-            this.treeList.DoubleClick += new System.EventHandler(this.treeList_DoubleClick);
             // 
             // columnId
             // 
@@ -131,16 +141,6 @@ namespace DirApp
             this.columnType.Visible = true;
             this.columnType.VisibleIndex = 1;
             // 
-            // showBtn
-            // 
-            this.showBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.showBtn.Location = new System.Drawing.Point(717, 2);
-            this.showBtn.Name = "showBtn";
-            this.showBtn.Size = new System.Drawing.Size(94, 29);
-            this.showBtn.TabIndex = 2;
-            this.showBtn.Text = "Просмотр";
-            this.showBtn.Click += new System.EventHandler(this.showBtn_Click);
-            // 
             // columnParentId
             // 
             this.columnParentId.Caption = "parentId";
@@ -155,20 +155,29 @@ namespace DirApp
             this.columnPath.Visible = true;
             this.columnPath.VisibleIndex = 2;
             // 
-            // contextMenuStrip
+            // columnSize
             // 
-            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.открытьToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(137, 28);
+            this.columnSize.Caption = "Размер файла";
+            this.columnSize.FieldName = "Размер файла";
+            this.columnSize.Name = "columnSize";
+            this.columnSize.Visible = true;
+            this.columnSize.VisibleIndex = 3;
             // 
-            // открытьToolStripMenuItem
+            // сolumnMimeType
             // 
-            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.открытьToolStripMenuItem.Text = "Открыть";
-            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
+            this.сolumnMimeType.Caption = "Расширение/MimeType";
+            this.сolumnMimeType.FieldName = "Расширение/MimeType";
+            this.сolumnMimeType.Name = "сolumnMimeType";
+            this.сolumnMimeType.Visible = true;
+            this.сolumnMimeType.VisibleIndex = 4;
+            // 
+            // columnCreateDate
+            // 
+            this.columnCreateDate.Caption = "Дата создания";
+            this.columnCreateDate.FieldName = "Дата создания";
+            this.columnCreateDate.Name = "columnCreateDate";
+            this.columnCreateDate.Visible = true;
+            this.columnCreateDate.VisibleIndex = 5;
             // 
             // Form1
             // 
@@ -185,7 +194,6 @@ namespace DirApp
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeList)).EndInit();
-            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -203,8 +211,9 @@ namespace DirApp
         private DevExpress.XtraEditors.SimpleButton showBtn;
         private DevExpress.XtraTreeList.Columns.TreeListColumn columnParentId;
         private DevExpress.XtraTreeList.Columns.TreeListColumn columnPath;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn columnSize;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn сolumnMimeType;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn columnCreateDate;
     }
 }
 

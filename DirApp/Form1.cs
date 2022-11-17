@@ -28,9 +28,11 @@ namespace DirApp
             columnCreateDate.FieldName = nameof(TreeListModel.CreateDate);
         }
 
-        public static long DirSize(DirectoryInfo d)
+       
+
+        public static double DirSize(DirectoryInfo d)
         {
-            long Size = 0;
+            double Size = 0;
 
             var fis = d.GetFiles();
 
@@ -62,6 +64,8 @@ namespace DirApp
             return (Size);
         }
 
+
+
         private List<TreeListModel> GetRecursFiles(string start_path, Guid parentId)
         {
             var ls = new List<TreeListModel>();
@@ -81,7 +85,7 @@ namespace DirApp
                         Path = infoDir.FullName,
                         Type = "Папка",
                         ParentId = parentId,
-                        SizeFile = DirSize(infoDir),
+                        SizeFile = Math.Round((double)DirSize(infoDir), 3) / 1024 / 1024 + " МБ",
                         MimeType = infoDir.Extension,
                         CreateDate = infoDir.CreationTime
                     }) ;
@@ -101,7 +105,7 @@ namespace DirApp
                         Path = infoFile.FullName,
                         Type = "Файл",
                         ParentId = parentId,
-                        SizeFile = new FileInfo(infoFile.FullName).Length,
+                        SizeFile = Math.Round((double)new FileInfo(infoFile.FullName).Length, 3) / 1024 / 1024 + " МБ",
                         MimeType = infoFile.Extension,
                         CreateDate = infoFile.CreationTime
                     });

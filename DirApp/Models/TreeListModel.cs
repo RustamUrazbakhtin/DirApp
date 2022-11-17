@@ -9,7 +9,7 @@ namespace DirApp.Models
         public string Path { get; set; }
         public string Type { get; set; }
         public Guid? ParentId { get; set; }
-        public float SizeFile { get; set; }
+        public string SizeFile { get; set; }
         public string MimeType { get; set; }
         public DateTime CreateDate { get; set; }
     }

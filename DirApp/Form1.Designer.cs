@@ -38,11 +38,11 @@ namespace DirApp
             this.columnId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.columnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.columnType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.columnParentId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.columnPath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.columnSize = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.сolumnMimeType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.columnCreateDate = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.сolumnMimeType = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.columnSize = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.columnPath = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.columnParentId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -127,41 +127,27 @@ namespace DirApp
             // 
             // columnName
             // 
-            this.columnName.Caption = "Наименование";
-            this.columnName.FieldName = "Наименование";
+            this.columnName.Caption = "Наименование/Name";
+            this.columnName.FieldName = "Наименование/Name";
             this.columnName.Name = "columnName";
             this.columnName.Visible = true;
             this.columnName.VisibleIndex = 0;
             // 
             // columnType
             // 
-            this.columnType.Caption = "Тип";
-            this.columnType.FieldName = "Тип";
+            this.columnType.Caption = "Тип/Type";
+            this.columnType.FieldName = "Тип/Type";
             this.columnType.Name = "columnType";
             this.columnType.Visible = true;
             this.columnType.VisibleIndex = 1;
             // 
-            // columnParentId
+            // columnCreateDate
             // 
-            this.columnParentId.Caption = "parentId";
-            this.columnParentId.FieldName = "parentId";
-            this.columnParentId.Name = "columnParentId";
-            // 
-            // columnPath
-            // 
-            this.columnPath.Caption = "Путь/Path";
-            this.columnPath.FieldName = "Путь/Path";
-            this.columnPath.Name = "columnPath";
-            this.columnPath.Visible = true;
-            this.columnPath.VisibleIndex = 2;
-            // 
-            // columnSize
-            // 
-            this.columnSize.Caption = "Размер файла";
-            this.columnSize.FieldName = "Размер файла";
-            this.columnSize.Name = "columnSize";
-            this.columnSize.Visible = true;
-            this.columnSize.VisibleIndex = 3;
+            this.columnCreateDate.Caption = "Дата создания/Create Date";
+            this.columnCreateDate.FieldName = "Дата создания/Create Data";
+            this.columnCreateDate.Name = "columnCreateDate";
+            this.columnCreateDate.Visible = true;
+            this.columnCreateDate.VisibleIndex = 5;
             // 
             // сolumnMimeType
             // 
@@ -171,13 +157,27 @@ namespace DirApp
             this.сolumnMimeType.Visible = true;
             this.сolumnMimeType.VisibleIndex = 4;
             // 
-            // columnCreateDate
+            // columnSize
             // 
-            this.columnCreateDate.Caption = "Дата создания";
-            this.columnCreateDate.FieldName = "Дата создания";
-            this.columnCreateDate.Name = "columnCreateDate";
-            this.columnCreateDate.Visible = true;
-            this.columnCreateDate.VisibleIndex = 5;
+            this.columnSize.Caption = "Размер файла/File Size";
+            this.columnSize.FieldName = "Размер файла / File Size";
+            this.columnSize.Name = "columnSize";
+            this.columnSize.Visible = true;
+            this.columnSize.VisibleIndex = 3;
+            // 
+            // columnPath
+            // 
+            this.columnPath.Caption = "Путь/Path";
+            this.columnPath.FieldName = "Путь/Path";
+            this.columnPath.Name = "columnPath";
+            this.columnPath.Visible = true;
+            this.columnPath.VisibleIndex = 2;
+            // 
+            // columnParentId
+            // 
+            this.columnParentId.Caption = "parentId";
+            this.columnParentId.FieldName = "parentId";
+            this.columnParentId.Name = "columnParentId";
             // 
             // Form1
             // 

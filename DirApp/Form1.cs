@@ -1,16 +1,21 @@
 ﻿using DirApp.Models;
+using DirApp.Enums;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace DirApp
 {
     public partial class Form1 : Form
     {
+        private TypeFileEnum typeFileEnum = new TypeFileEnum();
         private List<TreeListModel> _directoryList = new List<TreeListModel>();
+
+
         public Form1()
         {
             InitializeComponent();
@@ -83,7 +88,7 @@ namespace DirApp
                         Id = folderId,
                         Name = infoDir.Name,
                         Path = infoDir.FullName,
-                        Type = "Папка",
+                        Type = typeFileEnum.GetMimeType(infoDir.Extension),
                         ParentId = parentId,
                         SizeFile = Math.Round((double)DirSize(infoDir), 3) / 1024 / 1024 + " МБ",
                         MimeType = infoDir.Extension,
@@ -103,7 +108,7 @@ namespace DirApp
                         Id = Guid.NewGuid(),
                         Name = infoFile.Name,
                         Path = infoFile.FullName,
-                        Type = "Файл",
+                        Type = typeFileEnum.GetMimeType(infoFile.Extension),
                         ParentId = parentId,
                         SizeFile = Math.Round((double)new FileInfo(infoFile.FullName).Length, 3) / 1024 / 1024 + " МБ",
                         MimeType = infoFile.Extension,
@@ -130,5 +135,33 @@ namespace DirApp
 
         }
 
+        private void treeList_DoubleClick(object sender, EventArgs e)
+        {
+            var mimeTypeFile = treeList.FocusedNode.GetValue(сolumnMimeType);
+
+            if (mimeTypeFile != "")
+            {
+                var x64 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+                var x86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+
+                var isExecuted = false;
+                foreach (var rootPath in new[] { x64, x86 })
+                {
+                    var path = Path.Combine(rootPath, treeList.FocusedNode.GetValue(columnPath).ToString());
+                    if (File.Exists(path))
+                    {
+                        Process.Start(path);
+                        isExecuted = true;
+                        break;
+                    }
+                }
+
+                if (!isExecuted)
+                {
+                    MessageBox.Show("Ошибка файл не найден \"rc.exe\" ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
     }
 }

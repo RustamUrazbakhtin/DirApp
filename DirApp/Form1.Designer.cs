@@ -112,12 +112,14 @@ namespace DirApp
             this.treeList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList.Location = new System.Drawing.Point(2, 2);
             this.treeList.Name = "treeList";
+            this.treeList.OptionsBehavior.Editable = false;
             this.treeList.OptionsBehavior.ReadOnly = true;
             this.treeList.OptionsMenu.EnableColumnMenu = false;
             this.treeList.OptionsMenu.EnableFooterMenu = false;
             this.treeList.OptionsMenu.EnableNodeMenu = false;
             this.treeList.Size = new System.Drawing.Size(812, 722);
             this.treeList.TabIndex = 6;
+            this.treeList.DoubleClick += new System.EventHandler(this.treeList_DoubleClick);
             // 
             // columnId
             // 

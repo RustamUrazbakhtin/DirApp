@@ -3,4 +3,4 @@
 
 Приложение демонстрирует работу с файлами, директориями.
 
-Prilozheniye demonstriruyet rabotu s faylami, direktoriyami.
+The application demonstrates the work with files, directories.
